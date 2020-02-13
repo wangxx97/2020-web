@@ -1,10 +1,30 @@
 <template>
     <div>
+        <!-- 轮播图区域 -->
+<!--         <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>-->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img class="images" src="../../images/1.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="images" src="../../images/2.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img class="images" src="../../images/3.png" alt="">
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
 
-        <!--         轮播图区域-->
-        <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>
-        <!---->
-        <!-- 九宫格 到 6宫格 的改造工程 -->
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <router-link to="/home/newslist">
@@ -25,12 +45,10 @@
                 </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <!--<router-link to="/home/Comment">-->
                 <a href="#">
                     <img src="../../images/menu4.png" alt="">
                     <div class="mui-media-body">留言反馈</div>
                 </a>
-                <!--</router-link>-->
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
@@ -48,38 +66,59 @@
     </div>
 </template>
 
-<script>
-    import {Toast} from "mint-ui";
-    import swiper from "../subcomponents/swiper.vue";
 
-    export default {
-        data() {
-            return {
-                lunbotuList: [] // 保存轮播图的数组
-            };
+<script>
+    import swiper from "../../swiper.js";
+    import {Toast} from "mint-ui";
+    // import swiper from "../subcomponents/swiper.vue";
+    // export default {
+    //     data() {
+    //         return {
+    //             lunbotuList: [] // 保存轮播图的数组
+    //         };
+    //     },
+    //     created() {
+    //         this.getLunbotu();
+    //     },
+    //     methods: {
+    //         getLunbotu() {
+    //             // 获取轮播图数据的方法
+    //             this.$http.get("api/getlunbo").then(result => {
+    //                 // console.log(result.body);
+    //                 if (result.body.status === 0) {
+    //                     // 成功了
+    //                     this.lunbotuList = result.body.message;
+    //                 } else {
+    //                     // 失败的
+    //                     Toast("加载轮播图失败。。。");
+    //                 }
+    //             });
+    //         }
+    //     },
+    //     components: {
+    //         swiper
+    //     }
+    // };
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical', // 垂直切换选项
+        loop: true, // 循环模式选项
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
         },
-        created() {
-            this.getLunbotu();
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-        methods: {
-            getLunbotu() {
-                // 获取轮播图数据的方法
-                this.$http.get("api/getlunbo").then(result => {
-                    // console.log(result.body);
-                    if (result.body.status === 0) {
-                        // 成功了
-                        this.lunbotuList = result.body.message;
-                    } else {
-                        // 失败的
-                        Toast("加载轮播图失败。。。");
-                    }
-                });
-            }
-        },
-        components: {
-            swiper
-        }
-    };
+        // 如果需要滚动条
+        // scrollbar: {
+        //     el: '.swiper-scrollbar',
+        // },
+    })
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -99,5 +138,15 @@
 
     .mui-grid-view.mui-grid-9 .mui-table-view-cell {
         border: 0;
+    }
+
+    .swiper-container {
+        width: 420px;
+        height: 200px;
+    }
+
+    .images {
+        width: 420px;
+        height: 200px;
     }
 </style>
