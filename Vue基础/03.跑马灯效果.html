@@ -13,8 +13,8 @@
 <body>
   <!-- 2. 创建一个要控制的区域 -->
   <div id="app">
-    <input type="button" value="浪起来" @click="lang">
-    <input type="button" value="低调" @click="stop">
+    <input type="button" value="起来" @click="lang">
+    <input type="button" value="坐下" @click="stop">
 
     <h4>{{ msg }}</h4>
 
@@ -25,7 +25,7 @@
     var vm = new Vue({
       el: '#app',
       data: {
-        msg: '猥琐发育，别浪~~！',
+        msg: '开心~~！',
         intervalId: null // 在data上定义 定时器Id
       },
       methods: {
