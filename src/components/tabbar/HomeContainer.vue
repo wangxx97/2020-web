@@ -141,12 +141,12 @@
     }
 
     .swiper-container {
-        width: 420px;
+        width: 100%;
         height: 200px;
     }
 
     .images {
-        width: 420px;
+        width: 100%;
         height: 200px;
     }
 </style>
